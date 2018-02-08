@@ -8,6 +8,7 @@
   <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.servlet.user.LoginServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet-mapping>
@@ -18,6 +19,11 @@
    <servlet>
     <servlet-name>createUser</servlet-name>
     <servlet-class>com.servlet.user.CreateUserServlet</servlet-class>
+    <init-param>
+      <param-name>email</param-name>
+      <param-value>userapp.admin@test.com</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
   </servlet>
   
   <servlet-mapping>
@@ -55,5 +61,27 @@
   	<url-pattern>/getUser</url-pattern>
   </servlet-mapping>
   
+ <filter>
+   <filter-name>loggerFilter</filter-name>
+   <filter-class>com.test.filter.LoggerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loggerFilter</filter-name>
+   <!--  <url-pattern>/*</url-pattern> -->
+    <url-pattern>/getUser</url-pattern>
+    <url-pattern>/deleteUser</url-pattern>
+    <url-pattern>/updateUser</url-pattern>
+    <url-pattern>/addUser</url-pattern>
+    <url-pattern>/login</url-pattern>
+  </filter-mapping> 
+  
+  <session-config>
+   <session-timeout>30</session-timeout>
+  </session-config>
+  
+  <context-param>
+    <param-name>company</param-name>
+    <param-value>xyz.org</param-value>
+  </context-param>
   
 </web-app>
